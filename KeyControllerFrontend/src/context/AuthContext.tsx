@@ -1,7 +1,7 @@
 import { MaterialSymbol, Modal } from "@/components";
 import { UserModel, UserType } from "@/models";
 import { api } from "@/services/api";
-import { getSuapUser } from "@/services/suap/data";
+// import { getSuapUser } from "@/services/suap/data";
 import { suapLogin } from "@/services/suap/login";
 import { userService } from "@/services/user";
 import { Credentials } from "@/types";
@@ -43,7 +43,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     try {
       const tokens = await suapLogin(data);
       // const suapUser = await getSuapUser(tokens.access);
-      const suapUser = await getSuapUser(tokens.token);
+      // const suapUser = await getSuapUser(tokens.token);
       // const { token } = await userService.login(suapUser);
 
       // localStorage.setItem(tokenName, token);

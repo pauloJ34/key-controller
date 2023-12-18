@@ -1,20 +1,20 @@
 networks:
   key-controler:
-    name: key-controller-network
+    name: keycontrollerbackend_backend
     external: true
     # Use a custom driver which takes special options
     ipam:
       config:
-        - subnet: 172.24.0.0/16
+        - subnet: 172.29.0.0/24
 services:
   app:
     container_name: front-and
     restart: always
     build: .
-    # ports:
-    #   - "3000:3000"
+    ports:
+      - "3000:3000"
     networks:
       key-controler:
-        ipv4_address: 172.24.0.150
+        ipv4_address: 172.29.0.150
       
        

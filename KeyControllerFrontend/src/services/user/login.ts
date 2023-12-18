@@ -1,5 +1,5 @@
 import { api } from '../api';
-import { SuapUser } from '../suap/data';
+// import { SuapUser } from '../suap/data';
 import { UserModel } from "@/models";
 
 export const userLoginService = async (user: UserModel) => {
