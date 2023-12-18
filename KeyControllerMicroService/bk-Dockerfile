@@ -1,0 +1,16 @@
+FROM node:lts-alpine
+
+ENV APP_NAME micro-service-report
+
+WORKDIR /app
+
+COPY .env package.json package-lock.json ./
+
+COPY src ./src
+COPY reports ./reports
+
+RUN npm install --silent
+
+EXPOSE 3000
+
+CMD [ "npm", "run", "dev"]

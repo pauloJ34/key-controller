@@ -1,0 +1,18 @@
+networks:
+  key-controler:
+    name: keycontrollerbackend_backend
+    external: true
+    # Use a custom driver which takes special options
+    ipam:
+      config:
+        - subnet: 172.17.0.0/16
+services:
+  app:
+    container_name: micro-service-report
+    restart: always
+    build: .
+    # ports:
+    #   - "3001:3000"
+    networks:
+      key-controler:
+        ipv4_address: 172.29.0.202

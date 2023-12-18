@@ -1,0 +1,8 @@
+KeyControllerMicroService/.vscode
+KeyControllerMicroService/node_modules
+
+KeyControllerFrontend/node_modules
+
+KeyControllerBackend/.mvn
+KeyControllerBackend/target
+KeyControllerBackend/.vscode

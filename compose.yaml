@@ -1,0 +1,125 @@
+networks:
+  backend:
+  
+   
+    # Use a custom driver which takes special options
+    # name: bridge
+    # external: true
+    name: key-controller-network
+
+    ipam:
+      config:
+        - subnet: 172.24.0.0/16
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    restart: always
+    ports:
+    - 80:80
+    - 443:443
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    depends_on:
+      - app_1
+      - app_2
+      - app_3
+      - app_4
+    networks:
+      - backend
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: key-controller
+    networks:
+      backend:
+        ipv4_address:  172.24.0.100
+    # ports:
+    #   - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  app_1:
+    container_name: back_01
+    image: openjdk:17-alpine
+    restart: always
+    working_dir: /app
+    volumes: 
+      - ./KeyControllerBackend/build-aplication/:/app/
+    # ports:
+    #   - "8080:8080"
+    # depends_on:
+    #   - postgres
+    # environment:
+    #   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/key-controller
+    #   SPRING_DATASOURCE_USERNAME: postgres
+    #   SPRING_DATASOURCE_PASSWORD: postgres
+    # command: mvn clean spring-boot:run
+    command: "java -jar key-controller.jar"
+    networks:
+      backend:
+        ipv4_address: 172.24.0.200
+  
+  app_2:
+    container_name: back_02
+    image: openjdk:17-alpine
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./KeyControllerBackend/build-aplication/:/app/
+    # ports:
+    #   - "8081:8080"
+    # depends_on:
+    #   - postgres
+    # environment:
+    #   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/key-controller
+    #   SPRING_DATASOURCE_USERNAME: postgres
+    #   SPRING_DATASOURCE_PASSWORD: postgres
+    # command: mvn clean spring-boot:run
+    command: "java -jar key-controller.jar"
+    networks:
+      backend:
+        ipv4_address: 172.24.0.201
+  
+  app_3:
+    container_name: micro-login
+    image: openjdk:17-alpine
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./KeyControllerBackend/build-aplication/:/app/
+    # ports:s
+    #   - "8081:8080"
+    # depends_on:
+    #   - postgres
+    # environment:
+    #   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/key-controller
+    #   SPRING_DATASOURCE_USERNAME: postgres
+    #   SPRING_DATASOURCE_PASSWORD: postgres
+    # command: mvn clean spring-boot:run
+    command: "java -jar key-controller.jar"
+    networks:
+      backend:
+        ipv4_address: 172.24.0.202
+
+  app_4:
+    container_name: micro-report
+    image: node:lts-alpine
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./KeyControllerMicroService/:/app/
+
+    command: "npm run start"
+    networks:
+      backend:
+        ipv4_address: 172.24.0.203
+
+
+volumes:
+  postgres-data:
+  
