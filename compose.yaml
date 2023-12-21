@@ -50,15 +50,7 @@ services:
     working_dir: /app
     volumes: 
       - ./KeyControllerBackend/build-aplication/:/app/
-    # ports:
-    #   - "8080:8080"
-    # depends_on:
-    #   - postgres
-    # environment:
-    #   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/key-controller
-    #   SPRING_DATASOURCE_USERNAME: postgres
-    #   SPRING_DATASOURCE_PASSWORD: postgres
-    # command: mvn clean spring-boot:run
+    
     command: "java -jar key-controller.jar"
     networks:
       backend:
@@ -71,15 +63,7 @@ services:
     working_dir: /app
     volumes:
       - ./KeyControllerBackend/build-aplication/:/app/
-    # ports:
-    #   - "8081:8080"
-    # depends_on:
-    #   - postgres
-    # environment:
-    #   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/key-controller
-    #   SPRING_DATASOURCE_USERNAME: postgres
-    #   SPRING_DATASOURCE_PASSWORD: postgres
-    # command: mvn clean spring-boot:run
+    
     command: "java -jar key-controller.jar"
     networks:
       backend:
@@ -92,15 +76,7 @@ services:
     working_dir: /app
     volumes:
       - ./KeyControllerBackend/build-aplication/:/app/
-    # ports:s
-    #   - "8081:8080"
-    # depends_on:
-    #   - postgres
-    # environment:
-    #   SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/key-controller
-    #   SPRING_DATASOURCE_USERNAME: postgres
-    #   SPRING_DATASOURCE_PASSWORD: postgres
-    # command: mvn clean spring-boot:run
+    
     command: "java -jar key-controller.jar"
     networks:
       backend:
